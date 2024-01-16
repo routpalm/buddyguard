@@ -10,8 +10,8 @@ def parse_bgp_update(resource, endtime, starttime=None, rrcs=None, unix_timestam
         'starttime': starttime,
         'rrcs': rrcs,
         'unix_timestamps': str(unix_timestamps).upper(),
-        'table_name': table_name
     }
+    
     try:
         response = requests.get(base_url, params=params)
         response.raise_for_status()
