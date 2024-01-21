@@ -3,7 +3,7 @@ import csv
 
 def fetch_monitors(name, timestamp):
     url = "https://stat.ripe.net/data/ris-peers/data.json"
-    params = {'timestamp': timestamp}
+    params = {'query_time': timestamp}
 
     # request data from ripestat
     response = requests.get(url, params=params)
@@ -18,7 +18,8 @@ def fetch_monitors(name, timestamp):
 
         for rrc, peers in data['data']['peers'].items():
             for peer in peers:
-                writer.writerow([peer['asn'], peer['ip']])
+                if peer['asn'] != "0" and peer['ip'] != "0.0.0.0":
+                    writer.writerow([peer['asn'], peer['ip']])
 
 # data to proc
 hijack_map = {
@@ -30,4 +31,6 @@ hijack_map = {
 
 # loop over timestamps
 for hijack, timestamp in hijack_map.items():
+    print(f"FETCHING: {hijack}")
     fetch_monitors(hijack, timestamp)
+
