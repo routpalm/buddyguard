@@ -4,4 +4,5 @@ Work done to help practically implement the Buddyguard BGP prefix monitoring sys
 
 ## Current modules
 1. BGP update parsing (using RIPEstat)
-2. TBD
+2. RIS peers fetching (based on timestamps) and storing
+3. TBD
