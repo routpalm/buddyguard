@@ -2,6 +2,15 @@ import csv
 import requests
 from datetime import datetime
 import sqlite3
+
+# go back 24 hours each loop
+# need number of updates == MIN_NUM_SKEWERS
+# TODO: segment between training and monitoring stages
+# TODO: training should be more diverse
+# TODO: training should be 24 hour recursive loop
+# TODO: monitoring should be real time from all monitors, checking 3-6 minute intervals
+# TODO: training should reach monitored prefix and buddy candidates, monitoring should reach monitored prefix and buddies
+# TODO: flow -> get 50 (abritrary) updates for p -> loop through each timestamp (+- arbitrary interval close to convergence) for the update for each buddy candidate
 def parse_bgp_update(resource, endtime, starttime, rrcs=None, unix_timestamps=False,hijack_name=None):
     base_url = "https://stat.ripe.net/data/bgp-updates/data.json"
 
